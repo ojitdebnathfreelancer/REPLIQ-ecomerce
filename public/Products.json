@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Stuffed Bean Burger",
+        "img": "https://i.ibb.co/0VVdhnK/burgur.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "15"
+    },
+    {
+        "name": "Potato Corn Burger",
+        "img": "https://i.ibb.co/hVJpKGp/pexels-engin-akyurt-3356409.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "10"
+    },
+    {
+        "name": "Pizza",
+        "img": "https://i.ibb.co/DYSppMC/pizza.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "12"
+    },
+    {
+        "name": "Neapolitan Pizza",
+        "img": "https://i.ibb.co/p27prRn/pexels-rene-strgar-13814644-1.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "20"
+    },
+    {
+        "name": "California Pizza",
+        "img": "https://i.ibb.co/1v69pBf/pexels-jordan-rushton-12745317.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "25"
+    },
+    {
+        "name": "chicken frie",
+        "img": "https://i.ibb.co/0Xkt5LN/pexels-pixabay-60616.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "25"
+    },
+    {
+        "name": "chicken biryani",
+        "img": "https://i.ibb.co/NtbbHbP/pexels-dhiraj-jain-12737656.jpg",
+        "discription": "food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients used in the body of an organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by the body is fundamental to nutrition and is facilitated by digestion.",
+        "price": "22"
+    }
+]
