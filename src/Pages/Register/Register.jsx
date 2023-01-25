@@ -1,7 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ContextBDFood } from '../../ContextProvider/ContextProvider';
 
 const Register = () => {
+    const { userRegister } = useContext(ContextBDFood);
+    const [error, setErro] = useState('');
+    const navigate = useNavigate();
+
     const handelRegister = event => {
         event.preventDefault();
         const form = event.target;
@@ -13,7 +18,14 @@ const Register = () => {
             name,
             email,
             password
-        }
+        };
+
+        userRegister(email, password)
+            .then(() => {
+                form.reset();
+                navigate('/');
+            })
+            .catch(error => setErro(error.message));
 
         // console.log(userInfo)
     };
@@ -47,6 +59,7 @@ const Register = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                             </div>
+                            <p className='text-center font-semibold text-red-600'>{error}</p>
                             <p className='text-center mt-3'>Have you alreday an account <Link className='text-[#4A00E0] font-bold' to='/login'>Lgoin</Link></p>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>

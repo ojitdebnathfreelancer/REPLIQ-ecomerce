@@ -1,7 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ContextBDFood } from '../../ContextProvider/ContextProvider';
 
 const Login = () => {
+    const { userLogin } = useContext(ContextBDFood);
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
+
     const handelLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -13,7 +18,12 @@ const Login = () => {
             password
         }
 
-        console.log(userInfo)
+        userLogin(email, password)
+            .then(() => {
+                form.reset();
+                navigate('/');
+            })
+            .catch(error => setError(error.message));
     };
     // handel register funtion 
     return (
@@ -41,6 +51,7 @@ const Login = () => {
                                     <Link href="#" className="label-text-alt link link-hover">Forgot password?</Link>
                                 </label>
                             </div>
+                            <p className='text-center font-semibold text-red-600'>{error}</p>
                             <p className='text-center mt-3'>You havn't an account <Link className='text-[#4A00E0] font-bold' to='/register'>Register</Link></p>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
