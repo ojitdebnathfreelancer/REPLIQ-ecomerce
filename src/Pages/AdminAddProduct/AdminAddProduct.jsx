@@ -28,7 +28,7 @@ const AdminAddProduct = () => {
                     discription,
                     img: imgdata.data.url
                 }
-                axios.post('http://localhost:5000/foods', {
+                axios.post('https://bd-ecomere-server.vercel.app/foods', {
                     ...foodInfo
                 })
                     .then(data => {

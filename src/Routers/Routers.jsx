@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`, {
+                loader: ({ params }) => fetch(`https://bd-ecomere-server.vercel.app/food/${params.id}`, {
                     headers: {
                         'content-type': 'application/json',
                         authorization: `Bearer ${localStorage.getItem("token")}`
@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/deshboard/productdetails/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`, {
+                loader: ({ params }) => fetch(`https://bd-ecomere-server.vercel.app/food/${params.id}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem("token")}`
                     }
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/deshboard/orderdetaisl/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/cart/${params.id}`, {
+                loader: ({ params }) => fetch(`https://bd-ecomere-server.vercel.app/cart/${params.id}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem("token")}`
                     }

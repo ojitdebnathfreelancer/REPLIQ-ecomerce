@@ -11,7 +11,7 @@ const Products = () => {
     const { user } = useContext(ContextBDFood);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/foods', {
+        axios.get('https://bd-ecomere-server.vercel.app/foods', {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }

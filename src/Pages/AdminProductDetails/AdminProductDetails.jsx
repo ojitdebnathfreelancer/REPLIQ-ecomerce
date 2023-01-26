@@ -9,7 +9,7 @@ const AdminProductDetails = () => {
     const {user} = useContext(ContextBDFood);
 
     const addToCart = (product) => {
-        axios.post('http://localhost:5000/cart', {
+        axios.post('https://bd-ecomere-server.vercel.app/cart', {
             name: product.name,
             img: product.img,
             discription: product.discription,

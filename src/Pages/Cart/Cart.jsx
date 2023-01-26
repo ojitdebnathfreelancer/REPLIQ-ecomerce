@@ -32,7 +32,7 @@ const Cart = () => {
 
     useEffect(() => {
         if (user.email) {
-            axios.get(`http://localhost:5000/cart?email=${user.email}`,
+            axios.get(`https://bd-ecomere-server.vercel.app/cart?email=${user.email}`,
                 {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem("token")}`
@@ -49,7 +49,7 @@ const Cart = () => {
     // get added to cart data of current user 
 
     const handelDelete = (id) => {
-        axios.delete(`http://localhost:5000/cart/${id}?email=${user.email}`,
+        axios.delete(`https://bd-ecomere-server.vercel.app/cart/${id}?email=${user.email}`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`

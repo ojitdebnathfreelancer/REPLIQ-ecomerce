@@ -12,7 +12,7 @@ const CheckoutForm = ({ billInfo }) => {
     const {displayName, email, total} = billInfo;
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://bd-ecomere-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

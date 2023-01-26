@@ -15,7 +15,7 @@ const AdminOrdersList = () => {
 
     useEffect(() => {
         if (user.email) {
-            axios.get(`http://localhost:5000/cart?email=`, {
+            axios.get(`https://bd-ecomere-server.vercel.app/cart?email=`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -30,7 +30,7 @@ const AdminOrdersList = () => {
     // get added to cart data of current user 
 
     const handelDeleteOrder = (product) => {
-        axios.delete(`http://localhost:5000/cart/${product._id}?email=${product.userEmail}`,
+        axios.delete(`https://bd-ecomere-server.vercel.app/cart/${product._id}?email=${product.userEmail}`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`

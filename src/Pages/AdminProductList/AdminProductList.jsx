@@ -11,7 +11,7 @@ const AdminProductList = () => {
     const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/foods', {
+        axios.get('https://bd-ecomere-server.vercel.app/foods', {
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`
             }
@@ -24,7 +24,7 @@ const AdminProductList = () => {
     // fetching data from db 
 
     const handelDelete = (id) => {
-        axios.delete(`http://localhost:5000/food/${id}`,
+        axios.delete(`https://bd-ecomere-server.vercel.app/food/${id}`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`

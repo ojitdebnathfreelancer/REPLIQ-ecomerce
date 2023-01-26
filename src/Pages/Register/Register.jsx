@@ -27,11 +27,11 @@ const Register = () => {
             .then(() => {
                 updateUser({ displayName: name, photoURL: '' });
 
-                axios.post('http://localhost:5000/user', {
+                axios.post('https://bd-ecomere-server.vercel.app/user', {
                     ...userInfo
                 })
                     .then(() => {
-                        fetch('http://localhost:5000/jwt', {
+                        fetch('https://bd-ecomere-server.vercel.app/jwt', {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"

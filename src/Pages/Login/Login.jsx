@@ -17,7 +17,7 @@ const Login = () => {
         userLogin(email, password)
             .then(() => {
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://bd-ecomere-server.vercel.app/jwt', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
