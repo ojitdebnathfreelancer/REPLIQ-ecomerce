@@ -1,6 +1,8 @@
 # This an ecomerce webist (BD-Food)
 
-Please clicke on the linke to see live website [BD Food](https://github.com/facebook/create-react-app).
+Please clicke on the linke to see live website [BD Food](https://kaleidoscopic-parfait-9518ca.netlify.app/).
+
+BD Food live server link [Server](https://bd-ecomere-server.vercel.app/).
  
 admin cratincial: email:admin@gmail.com password: admin123@
 
