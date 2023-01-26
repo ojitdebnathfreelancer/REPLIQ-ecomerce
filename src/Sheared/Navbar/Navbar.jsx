@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from '../../Assets/logo/logo.png';
 import { ContextBDFood } from '../../ContextProvider/ContextProvider';
+import UseAdmin from '../../Hooks/UseAdmin/UseAdmin';
 
 const Navbar = () => {
     const { user, userLogout } = useContext(ContextBDFood);
     const navigate = useNavigate();
+    const [isAdmin] = UseAdmin(user?.email);
 
     const handelLogout = () => {
         userLogout()
@@ -23,8 +25,12 @@ const Navbar = () => {
             user?.uid ?
                 <>
                     <li><Link to='/cart'>Cart</Link></li>
-                    <li><Link to='/deshboard'>Deshboard</Link></li>
+                    {
+                        isAdmin?.isAdmin &&
+                        <li><Link to='/deshboard'>Deshboard</Link></li>
+                    }
                     <li><button onClick={() => handelLogout()}>Logout</button></li>
+                    <li><Link>{user?.displayName}</Link></li>
                 </>
                 :
                 <>
@@ -32,7 +38,6 @@ const Navbar = () => {
                     <li><Link to='/login'>Login</Link></li>
                 </>
         }
-        <li><Link>{user?.email}</Link></li>
     </>
     return (
         <div className="navbar bg-base-100 flex items-center justify-between">

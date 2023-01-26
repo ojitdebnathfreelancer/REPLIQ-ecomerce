@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React from 'react';
+import { toast } from 'react-hot-toast';
 
 const AdminAddProduct = () => {
     const handelFood = event => {
@@ -7,19 +9,35 @@ const AdminAddProduct = () => {
         const name = form.name.value;
         const price = form.price.value;
         const discription = form.discription.value;
-        const img = form.image.value;
+        const img = form.image.files[0];
 
-        // const image = img[0];
-        // const formData = new FormData();
-        // formData.append("image", image);
+        const imgApi = process.env.REACT_APP_img_apikey;
 
-        const foodInfo = {
-            name,
-            price,
-            discription,
-            img
-        }
-        console.log(foodInfo)
+        const formData = new FormData();
+        formData.append("image", img);
+
+        fetch(`https://api.imgbb.com/1/upload?key=${imgApi}`, {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgdata => {
+                const foodInfo = {
+                    name,
+                    price,
+                    discription,
+                    img: imgdata.data.url
+                }
+                axios.post('http://localhost:5000/foods', {
+                    ...foodInfo
+                })
+                    .then(data => {
+                        console.log(data.data);
+                        toast.success("Product Added Success");
+                        form.reset();
+                    })
+            })
+
     };
     // get food info and added BD function 
 

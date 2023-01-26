@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { ContextBDFood } from '../../ContextProvider/ContextProvider';
+import UseAdmin from '../../Hooks/UseAdmin/UseAdmin';
 import Navbar from '../../Sheared/Navbar/Navbar';
 
 const AdminDeshboard = () => {
+    const { user } = useContext(ContextBDFood);
+    const [isAdmin] = UseAdmin(user?.email);
+
     const menuItems = <>
-        <li className='font-semibold capitalize'><Link to='/deshboard/productlist'>Products List</Link></li>
-        <li className='font-semibold capitalize'><Link to='/deshboard/orderslist'>Orders List</Link></li>
-        <li className='font-semibold capitalize'><Link to='/deshboard/addproduct'>Add Product</Link></li>
+        {
+            isAdmin?.isAdmin &&
+            <>
+                <li className='font-semibold capitalize'><Link to='/deshboard/productlist'>Products List</Link></li>
+                <li className='font-semibold capitalize'><Link to='/deshboard/orderslist'>Orders List</Link></li>
+                <li className='font-semibold capitalize'><Link to='/deshboard/addproduct'>Add Product</Link></li>
+            </>
+        }
     </>
     return (
         <div>

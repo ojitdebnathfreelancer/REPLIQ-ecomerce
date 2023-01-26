@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { ContextBDFood } from '../../ContextProvider/ContextProvider';
 
@@ -13,15 +14,23 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        const userInfo = {
-            email,
-            password
-        }
-
         userLogin(email, password)
             .then(() => {
-                form.reset();
-                navigate('/');
+
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({ email })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('token', JSON.stringify(data.token));
+                        toast.success("Loggedin Success");
+                        form.reset();
+                        navigate('/');
+                    })
             })
             .catch(error => setError(error.message));
     };

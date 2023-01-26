@@ -13,6 +13,7 @@ import Login from "../Pages/Login/Login";
 import Details from "../Pages/Products/Detaisl/Details";
 import Products from "../Pages/Products/Products";
 import Register from "../Pages/Register/Register";
+import AdminRoute from "./AdminRoute";
 import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
@@ -42,35 +43,51 @@ export const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
-                path: '/details',
-                element: <Details></Details>
+                path: '/details/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`, {
+                    headers: {
+                        'content-type': 'application/json',
+                        authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }),
+                element: <PrivetRoute><Details></Details></PrivetRoute>
             }
         ],
     },
     {
         path: '/deshboard',
         errorElement: <ErrorPage></ErrorPage>,
-        element: <PrivetRoute><AdminDeshboard></AdminDeshboard></PrivetRoute>,
+        element: <PrivetRoute><AdminRoute><AdminDeshboard></AdminDeshboard></AdminRoute></PrivetRoute>,
         children: [
             {
                 path: '/deshboard/productlist',
-                element: <AdminProductList></AdminProductList>
+                element: <AdminRoute><AdminProductList></AdminProductList></AdminRoute>
             },
             {
-                path: 'deshboard/productdetails',
-                element: <AdminProductDetails></AdminProductDetails>
+                path: '/deshboard/productdetails/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/food/${params.id}`, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }),
+                element: <AdminRoute><AdminProductDetails></AdminProductDetails></AdminRoute>
             },
             {
                 path: '/deshboard/orderslist',
-                element: <AdminOrdersList></AdminOrdersList>
+                element: <AdminRoute><AdminOrdersList></AdminOrdersList></AdminRoute>
             },
             {
-                path: '/deshboard/orderdetaisl',
-                element: <AdminOrderDetaisl></AdminOrderDetaisl>
+                path: '/deshboard/orderdetaisl/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/cart/${params.id}`, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }),
+                element: <AdminRoute><AdminOrderDetaisl></AdminOrderDetaisl></AdminRoute>
             },
             {
                 path: '/deshboard/addproduct',
-                element: <AdminAddProduct></AdminAddProduct>
+                element: <AdminRoute><AdminAddProduct></AdminAddProduct></AdminRoute>
             }
         ],
     },

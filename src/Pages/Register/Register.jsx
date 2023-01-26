@@ -1,9 +1,11 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { ContextBDFood } from '../../ContextProvider/ContextProvider';
 
 const Register = () => {
-    const { userRegister } = useContext(ContextBDFood);
+    const { userRegister, userUpdate } = useContext(ContextBDFood);
     const [error, setErro] = useState('');
     const navigate = useNavigate();
 
@@ -17,17 +19,44 @@ const Register = () => {
         const userInfo = {
             name,
             email,
-            password
+            password,
+            role:"buyer"
         };
 
         userRegister(email, password)
             .then(() => {
-                form.reset();
-                navigate('/');
+                updateUser({ displayName: name, photoURL: '' });
+
+                axios.post('http://localhost:5000/user', {
+                    ...userInfo
+                })
+                    .then(() => {
+                        fetch('http://localhost:5000/jwt', {
+                            method: "POST",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify({ email })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                localStorage.setItem('token', JSON.stringify(data.token));
+                                toast.success("Registered User");
+                                form.reset();
+                                navigate('/');
+                            })
+                    })
+                    .catch(error => console.log(error));
             })
             .catch(error => setErro(error.message));
 
-        // console.log(userInfo)
+        const updateUser = (profile) => {
+            userUpdate(profile)
+                .then(() => { })
+                .catch(error => console.log(error));
+        };
+        // upate user 
+
     };
     // handel register funtion 
 
