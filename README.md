@@ -1,8 +1,8 @@
 # This an ecomerce webist (BD-Food)
 
-Please clicke on the linke to see live website [Create React App](https://github.com/facebook/create-react-app).
+Please clicke on the linke to see live website [BD Food](https://github.com/facebook/create-react-app).
  
-admin cratincial: emal:admin@gmail.com password: admin123@
+admin cratincial: email:admin@gmail.com password: admin123@
 
 ## Project Discriptions
 
