@@ -24,7 +24,7 @@ const ContextProvider = ({ children }) => {
 
     const userLogout = () => {
         setLoading(false);
-        return signOut(auth);
+        return signOut(auth)
     };
     // user logout 
 

@@ -2,9 +2,14 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { MdDelete } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { ContextBDFood } from '../../ContextProvider/ContextProvider';
 import Loading from '../../Sheared/Loading/Loading';
+import CheckoutForm from '../../Sheared/Payment/CheckoutForm';
+
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
@@ -12,13 +17,18 @@ const Cart = () => {
     const [refresh, setRefresh] = useState(false);
     const { user } = useContext(ContextBDFood);
 
+
+
     let total = 0;
     let quantity = 0;
     for (const product of cart) {
         quantity = quantity + product.quantity;
         total = total + product.price * product.quantity;
     };
+
     localStorage.setItem('cart', JSON.stringify({ total, quantity }));
+
+    const billInfo = { name: user?.displayName, email: user?.email, total };
 
     useEffect(() => {
         if (user.email) {
@@ -98,9 +108,14 @@ const Cart = () => {
                                             <p className='text-xl font-semibold capitalize'>Products: {cart.length}</p>
                                             <p className='text-xl font-semibold capitalize'>Total Quanity: {quantity}</p>
                                             <p className='text-xl font-semibold capitalize'>Total Cost: {total}$</p>
-                                            <Link>
-                                                <button className="btn capitalize px-8 py-1 bg-white hover:bg-[#8E2DE2] text-black text-lg hover:text-white mt-2">Payment</button>
-                                            </Link>
+
+                                            <div className='flex justify-center'>
+                                                <div className='my-6 lg:w-84 md:w-80 w-72'>
+                                                    <Elements stripe={stripePromise}>
+                                                        <CheckoutForm billInfo={billInfo}></CheckoutForm>
+                                                    </Elements>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </>
